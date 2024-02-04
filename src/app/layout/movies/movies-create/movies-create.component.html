@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="form" [formGroup]="form" (ngSubmit)="update()">
+  <form class="form" [formGroup]="form" (ngSubmit)="create()">
     <app-input-control
       labelName="Film İsmi"
       [form]="form"
@@ -19,18 +19,11 @@
     } }
     <div class="mt-3 flex gap-3">
       <button
-        class="px-2 py-2 bg-red-500 text-sm font-bold rounded-md"
-        type="button"
-        (click)="deleteMovie()"
-      >
-        Filmi Sil
-      </button>
-      <button
         class="px-2 py-2 bg-purple-500 text-sm font-bold rounded-md"
         type="submit"
         [disabled]="!form.valid"
       >
-        Güncelle
+        Oluştur
       </button>
     </div>
   </form>

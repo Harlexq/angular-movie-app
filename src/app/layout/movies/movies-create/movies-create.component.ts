@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MoviesService } from '../../../services/movies.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { InputControlComponent } from '../../../shared/input-control/input-control.component';
 import { NgIf } from '@angular/common';
 import {
@@ -17,7 +17,7 @@ import {
 } from 'ngx-simple-text-editor';
 
 @Component({
-  selector: 'app-movies-update',
+  selector: 'app-movies-create',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -26,10 +26,10 @@ import {
     NgIf,
     NgxSimpleTextEditorModule,
   ],
-  templateUrl: './movies-update.component.html',
-  styleUrl: './movies-update.component.scss',
+  templateUrl: './movies-create.component.html',
+  styleUrl: './movies-create.component.scss',
 })
-export class MoviesUpdateComponent {
+export class MoviesCreateComponent {
   form!: FormGroup;
   movies: any;
   movieId: any;
@@ -41,46 +41,29 @@ export class MoviesUpdateComponent {
   constructor(
     private formBuilder: FormBuilder,
     private moviesService: MoviesService,
-    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.updateForm();
-
-    this.movieId = this.activatedRoute.snapshot.paramMap.get('id');
-
-    this.moviesService.getMoviesDetail(this.movieId, (res) => {
-      this.movies = res;
-      this.form.patchValue({
-        title: this.movies.title,
-        overview: this.movies.overview,
-      });
-    });
+    this.createForm();
   }
 
-  updateForm() {
+  createForm() {
     this.form = this.formBuilder.group({
       title: ['', [Validators.required]],
       overview: ['', [Validators.required, Validators.minLength(100)]],
     });
   }
 
-  update() {
+  create() {
     const request = {
       title: this.form.get('title')?.value,
       overview: this.form.get('overview')?.value,
     };
 
-    this.moviesService.putMovies(this.movies.id, request, (res) => {
+    this.moviesService.postMovies(request, (res) => {
       this.router.navigateByUrl('/movies');
       console.log('Başarılı', res);
-    });
-  }
-
-  deleteMovie() {
-    this.moviesService.deleteMovies(this.movies.id, () => {
-      this.router.navigateByUrl('/movies');
     });
   }
 

@@ -34,6 +34,13 @@ export const routes: Routes = [
             (c) => c.MoviesDetailComponent
           ),
       },
+      {
+        path: 'movies-create',
+        loadComponent: () =>
+          import('./layout/movies/movies-create/movies-create.component').then(
+            (c) => c.MoviesCreateComponent
+          ),
+      },
     ],
   },
 ];
