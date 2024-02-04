@@ -1,0 +1,39 @@
+<div class="container">
+  <form class="form" [formGroup]="form" (ngSubmit)="update()">
+    <app-input-control
+      labelName="Film İsmi"
+      [form]="form"
+      placeholder="Lütfen Film İsmini Giriniz"
+      [fc]="newTitle"
+    />
+    @if (newTitle.invalid&& newTitle.dirty) { @if
+    (newTitle.errors?.["required"]) {
+    <p class="error-message">Film İsmi Zorunludur</p>
+    } }
+    <st-editor [config]="config" [formControl]="newOverview" />
+    @if(newOverview.invalid && newOverview.dirty) {
+    @if(newOverview.errors?.['required']) {
+    <p class="error-message">Film Açıklaması Zorunludur</p>
+    } @if(newOverview.errors?.['minlength']) {
+    <p class="error-message">Film Açıklaması En Az 100 Karakter Olmalıdır</p>
+    } }
+    <app-input-control
+      labelName="Film Tarihi"
+      [form]="form"
+      placeholder="Lütfen Film Tarihini Giriniz"
+      [fc]="newreleaseDate"
+      type="date"
+    />
+    @if(newreleaseDate.invalid && newreleaseDate.dirty) {
+    @if(newreleaseDate.errors?.['required']) {
+    <p class="error-message">Film Tarihi Zorunludur</p>
+    } }
+    <button
+      class="mt-3 px-2 py-2 bg-purple-500 text-sm font-bold rounded-md"
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      Güncelle
+    </button>
+  </form>
+</div>

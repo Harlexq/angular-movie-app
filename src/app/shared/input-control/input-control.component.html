@@ -1,0 +1,14 @@
+<div class="form" [formGroup]="form">
+  <label
+    class="block text-[16px] font-bold mb-3 my-3 text-white"
+    [for]="controlId"
+    >{{ labelName }}</label
+  >
+  <input
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControl]="fc"
+    class="text-[14px] my-2 block text-black h-[45px] rounded-sm transition-colors p-2 w-full border-[1px] focus:border-[#404eed] outline-none"
+    [id]="controlId"
+  />
+</div>

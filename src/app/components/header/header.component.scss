@@ -1,0 +1,23 @@
+::ng-deep {
+  .p-menubar-root-list {
+    display: flex;
+    gap: 20px;
+  }
+  .p-menubar.p-component {
+    background-color: transparent;
+  }
+  .p-menuitem-content {
+    &:hover {
+      background-color: transparent;
+    }
+    .p-menuitem-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f1f1f1;
+      transition: 0.3s;
+      &:hover {
+        color: rgb(147 51 234 / 1);
+      }
+    }
+  }
+}
